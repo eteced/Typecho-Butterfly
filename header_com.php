@@ -279,10 +279,21 @@
         }, document.head.appendChild(c)
       })), 
       e.activateDarkMode = () => {
-        document.documentElement.setAttribute("data-theme", "dark"), null !== document.querySelector('meta[name="theme-color"]') && document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0d0d0d")
+        document.documentElement.setAttribute("data-theme", "dark"), null !== document.querySelector('meta[name="theme-color"]') && document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0d0d0d");
+        var x = document.querySelectorAll(".hljs");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.background = "#e5fdfe00";
+        }
+        console.log('changed. dark');
       }, 
       e.activateLightMode = () => {
-        document.documentElement.setAttribute("data-theme", "light"), null !== document.querySelector('meta[name="theme-color"]') && document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff")
+        document.documentElement.setAttribute("data-theme", "light"), null !== document.querySelector('meta[name="theme-color"]') && document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
+        var x = document.querySelectorAll(".hljs");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.background = "#e5fdfeb3";
+        }
       };
       const t = saveToLocal.get("theme"),
         a = <?php $this->options->darkModeSelect() ?> === 4,
@@ -525,3 +536,20 @@
     </div>
   </div>
   <!--移动导航栏-->
+<!-- MathJax -->
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { availableFonts: ["TeX"] }
+      });
+</script>

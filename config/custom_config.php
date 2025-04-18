@@ -899,6 +899,17 @@ function themeFields($layout)
         '介绍：这篇文章看来不需要封面'
     );
     $layout->addItem($NoCover);
+    $StatusArticle = new Typecho_Widget_Helper_Form_Element_Select(
+        'StatusArticle',
+        array(
+            'on' => '短的动态',
+            'off' => '常规文章',
+        ),
+        'off',
+        '这篇文章是否是短动态',
+        '介绍：默认不是短动态'
+    );
+    $layout->addItem($StatusArticle);
 }
 
 function themeInit($archive)

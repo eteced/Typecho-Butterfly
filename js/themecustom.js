@@ -34,4 +34,5 @@ window.onload=function(){
         const hash = window.location.hash
         localStorage.setItem("point", hash)
     });
+    ActiveThemeAgain();
 }

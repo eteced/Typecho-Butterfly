@@ -19,6 +19,20 @@
   white-space: nowrap;
 }
 
+.vstatustag {
+  background: #4d90fe;
+  font-size: 16px;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.MathJax, .MathJax_PHTML, .MathJax_CHTML, .MathJax_SVG, .MathJax_MathML {
+  color: #00b4ff;
+}
+
 .vvisitor {
   background: #828282 !important;
 }
@@ -56,6 +70,20 @@
   text-decoration: none;
   cursor: pointer;
   color: #1abc9c;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.vnick_auth,
+.vnick_auth a {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-weight: bold;
+  font-size: 0.875em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  color: #bc1a1a;
   font-style: normal;
   line-height: 1.5;
 }
@@ -422,16 +450,6 @@ div.code-toolbar {
 
 #article-container pre {
   padding: 0 !important;
-}
-#article-container figure.highlight,
-#article-container pre {
-  margin: 0 0 1rem;
-  background: #1c1c1c;
-}
-
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #f8f8f2 !important;
 }
 
 code::-webkit-scrollbar-thumb {

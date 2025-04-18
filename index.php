@@ -7,6 +7,7 @@
  * <a href="https://www.haoi.net">个人网站</a> | <a href="https://blog.haoi.net/archives/typecho-butterfly.html">主题使用文档</a>
  * @package Typecho-Butterfly
  * @author b站:wehao-
+ * @mod eteced
  * @version 1.8.1
  * @link https://space.bilibili.com/34174433
  */
@@ -93,7 +94,7 @@ if($this->options->coverPosition === 'cross'){
         </wehao>
     <?php endif ?>
     <div class="recent-post-info<?php echo noCover($this) ? '' : ' no-cover'; ?>">
-        <a  class="article-title" href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
+        <div class="article-title"> <?php if ($this->fields->StatusArticle == "on") {echo '<span class="vtag vstatustag">动态</span>'; } ?><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a> </div>
         <div class="article-meta-wrap">
         <?php $this->sticky(); ?>
             <span class="post-meta-date">
@@ -129,8 +130,14 @@ if($this->options->coverPosition === 'cross'){
             </span>
         </div>
         <div class="content">
-            <?php summaryContent($this);
-            echo '<br><a href="',$this->permalink(),'" title="',$this->title(),'">阅读全文...</a>';
+            <?php
+            if ($this->fields->StatusArticle == "on"){
+                echo $this->excerpt(130);;
+                echo '<br><a href="', $this->permalink(), '" title="', $this->title(), '">前去评论</a>';
+            } else {
+                summaryContent($this);
+                echo '<br><a href="', $this->permalink(), '" title="', $this->title(), '">阅读全文...</a>';
+            }
                 ?>
             </div>
     </div>
@@ -158,6 +165,7 @@ function ver() {console.log(`
     
                            <?php echo getThemeVersion().PHP_EOL?>
 ===================================================================
+                                             Modified By eteced
 `);}
 ver();
 </script>

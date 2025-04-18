@@ -10,6 +10,8 @@
           <span class="footer-separator">|</span>
           <span>主题</span>
           <a id="btheme" target="_blank" href="https://github.com/wehaox/Typecho-Butterfly">Butterfly</a>
+          <span>Mod By</span>
+          <a id="btheme" href="https://github.com/eteced/Typecho-Butterfly">eteced</a>
         </div>
         <div class="footer_custom_text"><?php $this->options->Customfooter() ?></div>
       </div>
@@ -321,6 +323,36 @@
   </script>
 <?php endif ?>
 <!--pjax end-->
+<link rel="stylesheet" href="<?php $this->options->themeUrl('css/atom-one-light.css'); ?>">
+<script type="text/javascript" src="<?php $this->options->themeUrl('js/highlight.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('js/highlightjs-line-numbers.min.js'); ?>"></script>
+<script>hljs.highlightAll();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+function FixThemeDarkMode () {
+  const t = saveToLocal.get("theme"),
+          a = <?php $this->options->darkModeSelect() ?> === 4,
+          o = <?php $this->options->darkModeSelect() ?> === 1,
+          c = <?php $this->options->darkModeSelect() ?> === 2,
+          n = !a && !o && !c;
+        if (void 0 === t) {
+          if (o) activateLightMode();
+          else if (a) activateDarkMode();
+          else if (n) {
+            const e = (new Date).getHours();
+            <?php darkTimeFunc() ?> ? activateDarkMode() : activateLightMode()
+          }
+          window.matchMedia("(prefers-color-scheme: dark)").addListener((e => {
+            void 0 === saveToLocal.get("theme") && (e.matches ? activateDarkMode() : activateLightMode())
+          }))
+        } else "light" === t ? activateLightMode() : activateDarkMode();
+};
+if(window.addEventListener){
+  window.addEventListener('load', FixThemeDarkMode)
+}else{
+  window.attachEvent('onload', FixThemeDarkMode)
+}
+</script>
 </body>
 
 </html>

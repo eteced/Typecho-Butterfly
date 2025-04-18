@@ -55,3 +55,21 @@ $this->need('page_header.php');
     <style>.card-recent-post{display:none}#to_comment{display: none!important;}</style>
 </main>
 <?php $this -> need('footer.php'); ?>
+<script>
+const t = saveToLocal.get("theme"),
+          a = <?php $this->options->darkModeSelect() ?> === 4,
+          o = <?php $this->options->darkModeSelect() ?> === 1,
+          c = <?php $this->options->darkModeSelect() ?> === 2,
+          n = !a && !o && !c;
+        if (void 0 === t) {
+          if (o) activateLightMode();
+          else if (a) activateDarkMode();
+          else if (n) {
+            const e = (new Date).getHours();
+            <?php darkTimeFunc() ?> ? activateDarkMode() : activateLightMode()
+          }
+          window.matchMedia("(prefers-color-scheme: dark)").addListener((e => {
+            void 0 === saveToLocal.get("theme") && (e.matches ? activateDarkMode() : activateLightMode())
+          }))
+        } else "light" === t ? activateLightMode() : activateDarkMode();
+</script>

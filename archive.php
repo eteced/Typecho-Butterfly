@@ -60,9 +60,15 @@
 							</span>
 						</div>
 						<div class="content">
-							<?php summaryContent($this);
-							echo '<br><br><a href="', $this->permalink(), '" title="', $this->title(), '">阅读全文...</a>';
-							?>
+						<?php
+							if ($this->fields->StatusArticle == "on"){
+								echo $this->excerpt(130);;
+								echo '<br><a href="', $this->permalink(), '" title="', $this->title(), '">前去评论</a>';
+							} else {
+								summaryContent($this);
+								echo '<br><a href="', $this->permalink(), '" title="', $this->title(), '">阅读全文...</a>';
+							}
+						?>
 						</div>
 					</div>
 				</div>

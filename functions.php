@@ -595,12 +595,14 @@ function getGravatar($email, $name, $comments_a, $s = 96, $d = 'mp', $r = 'g')
 {
     preg_match_all('/((\d)*)@qq.com/', $email, $vai);
     if (empty($vai['1']['0'])) {
-        $url = Helper::options()->GravatarSelect;
-        $url .= md5(strtolower(trim($email)));
-        $url .= "?s=$s&d=$d&r=$r";
+        // $url = Helper::options()->GravatarSelect;
+        // $url .= md5(strtolower(trim($email)));
+        // $url .= "?s=$s&d=$d&r=$r";
+        $url = 'usr/themes/butterfly/img/blank.webp';
         $imga = '<img ' . $comments_a . ' src="' . GetLazyLoad() . '" data-lazy-src="' . $url . '" >';
     } else {
-        $url = 'https://cravatar.cn/avatar/'.md5(strtolower(trim($email)));
+        // $url = 'https://cravatar.cn/avatar/'.md5(strtolower(trim($email)));
+        $url = 'usr/themes/butterfly/img/blank.webp';
         $imga = '<img ' . $comments_a . ' src="' . GetLazyLoad() . '" data-lazy-src="' . $url . '" >';
     }
     return $imga;
@@ -770,9 +772,9 @@ function threadedComments($comments, $options)
                 <?php $email = $comments->mail;
                 $name = $comments->author;
                 $comments_a = 'class="vimg" style="border-radius: 50%;"';
-                echo getGravatar($email, $name, $comments_a); ?>
+                // echo getGravatar($email, $name, $comments_a); ?>
                 <div class="vuser">
-                    <cite class="vnick" title="<?php $comments->author; ?>">
+                    <cite class="vnick<?php if ($comments->authorId == $comments->ownerId): echo("_auth"); endif?> " title="<?php $comments->author; ?>">
                         <?php $comments->author(); ?>
                     </cite>
                     <?php commentRank($comments, $comments->mail); ?>
@@ -790,13 +792,9 @@ function threadedComments($comments, $options)
                     </span>
                 <?php endif ?>
             </div>
-            <div class="comment-content">
+            <div class="comment-content-mod">
                 <?php $comments->content(); ?>
             </div>
-            <span class="comment-ua">
-                <?php getOs($comments->agent); ?>
-                <?php getBrowser($comments->agent); ?>
-            </span>
         </div>
         <?php if ($comments->children) { ?>
             <div class="comment-children">
@@ -1771,6 +1769,7 @@ function processPostContent($archive) {
     
     return $content;
 }
+
 
 // Typecho_Plugin::factory('Widget_Contents_Post_Edit')->finishPublish = array('ThemeCacheCleaner', 'clearCache');
 // Typecho_Plugin::factory('Widget_Contents_Page_Edit')->finishPublish = array('ThemeCacheCleaner', 'clearCache');
